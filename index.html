@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHTRIX — Digital по красотє</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Unbounded:wght@300;400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #1a1c1d;
+  --bg2: #2C2F30;
+  --accent: #A05C7B;
+  --green: #A6F4DC;
+  --white: #eef8f5;
+  --muted: #8fa39f;
+  --line: rgba(255,255,255,.07);
+  --bebas: 'Bebas Neue', sans-serif;
+  --archivo: 'Archivo Black', sans-serif;
+  --un: 'Unbounded', sans-serif;
+  --mono: 'Space Mono', monospace;
+  --ms: 'Montserrat', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--ms);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* NOISE + GRADIENT BG */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 75% 35%, rgba(160,92,123,.14) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 55% at 15% 75%, rgba(166,244,220,.06) 0%, transparent 60%);
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+.wrap { width: min(1300px, calc(100% - 40px)); margin: auto; position: relative; z-index: 1; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 900;
+  background: rgba(26,28,29,.85);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.logo {
+  font-family: var(--archivo);
+  font-size: 2rem;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+.logo .m { color: var(--green); }
+.logo .x { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--muted);
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--green); }
+
+.nav-cta {
+  background: var(--accent);
+  color: var(--white);
+  padding: .55rem 1.3rem;
+  font-family: var(--un);
+  font-size: .62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  transition: background .2s, transform .2s;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: var(--green); color: var(--bg); transform: translateY(-1px); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 72px 20px 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-lines span {
+  position: absolute;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(166,244,220,.12), transparent);
+  animation: lineFade 4s ease-in-out infinite;
+}
+.hero-lines span:nth-child(1) { left: 15%; height: 60%; top: 20%; animation-delay: 0s; }
+.hero-lines span:nth-child(2) { left: 42%; height: 80%; top: 5%; animation-delay: 1s; }
+.hero-lines span:nth-child(3) { left: 68%; height: 50%; top: 30%; animation-delay: 2s; }
+.hero-lines span:nth-child(4) { left: 88%; height: 70%; top: 10%; animation-delay: .5s; }
+@keyframes lineFade { 0%,100%{opacity:0} 50%{opacity:1} }
+
+.hero-inner { position: relative; z-index: 2; max-width: 1300px; margin: 0 auto; width: 100%; }
+
+.hero-tag {
+  font-family: var(--ms);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp .8s ease forwards .2s;
+  padding-left: 1rem;
+  border-left: 2px solid var(--accent);
+  display: inline-block;
+}
+.hero-tag::before { content: ''; }
+
+.hero-title {
+  font-family: var(--archivo);
+  font-size: clamp(3.5rem, 11vw, 12rem);
+  line-height: .88;
+  letter-spacing: -.01em;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  opacity: 0;
+  animation: fadeUp .9s ease forwards .35s;
+}
+.hero-title .l1 { color: var(--white); display: block; }
+.hero-title .l2 { color: var(--green); display: block; }
+.hero-title .l3 {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(166,244,220,.28);
+  display: block;
+}
+
+.hero-sub {
+  margin-top: 1.8rem;
+  font-family: var(--ms);
+  font-size: .95rem;
+  font-weight: 400;
+  color: rgba(238,248,245,.85);
+  max-width: 520px;
+  line-height: 1.8;
+  text-shadow: 0 1px 10px rgba(0,0,0,.55);
+  opacity: 0;
+  animation: fadeUp .9s ease forwards .55s;
+}
+
+.hero-btns {
+  margin-top: 2.2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp .9s ease forwards .75s;
+}
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+/* ─── BUTTONS ─── */
+.btn-primary {
+  background: var(--green);
+  color: var(--bg);
+  padding: .95rem 2rem;
+  font-family: var(--un);
+  font-size: .62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: all .25s;
+}
+.btn-primary:hover { background: var(--white); transform: translate(2px,-2px); box-shadow: -4px 4px 0 var(--accent); }
+
+.btn-outline {
+  border: 1px solid rgba(166,244,220,.28);
+  color: var(--green);
+  padding: .95rem 2rem;
+  font-family: var(--un);
+  font-size: .62rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  display: inline-flex;
+  align-items: center;
+  transition: all .25s;
+}
+.btn-outline:hover { border-color: var(--green); background: rgba(166,244,220,.05); }
+
+/* ─── TICKER ─── */
+.ticker-wrap {
+  background: var(--accent);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: .85rem 0;
+  border-top: 1px solid rgba(255,255,255,.1);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  position: relative; z-index: 1;
+}
+.ticker-track { display: inline-flex; animation: ticker 22s linear infinite; }
+.ticker-item {
+  font-family: var(--bebas);
+  font-size: 1.05rem;
+  letter-spacing: .12em;
+  color: var(--white);
+  padding: 0 2rem;
+}
+.ticker-item span { color: rgba(255,255,255,.35); margin-right: 2rem; }
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ─── SECTION BASICS ─── */
+.section { padding: 90px 0; position: relative; z-index: 1; }
+.section-label {
+  font-family: var(--ms);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.section-label::before { content: ''; }
+.section-label::after { content: ''; }
+
+.section-title {
+  font-family: var(--archivo);
+  font-size: clamp(2.8rem, 6.5vw, 6rem);
+  line-height: .93;
+  letter-spacing: .03em;
+  margin-bottom: 16px;
+  color: var(--green);
+  position: relative;
+  display: inline-block;
+}
+.section-title::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+  opacity: 0.5;
+  margin-top: .45em;
+  border-radius: 1px;
+}
+.section-title span { color: var(--green); }
+.section-title .acc { color: var(--green); }
+
+/* ─── ABOUT ─── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.about-title {
+  font-family: var(--archivo);
+  font-size: clamp(3.2rem, 6.5vw, 6rem);
+  line-height: .95;
+  letter-spacing: .02em;
+  color: var(--green);
+  position: relative;
+  display: inline-block;
+}
+.about-title::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+  opacity: 0.5;
+  margin-top: .45em;
+  border-radius: 1px;
+}
+.about-title em { font-style: normal; color: var(--green); display: block; }
+
+.about-text {
+  font-family: var(--ms);
+  font-size: .95rem;
+  font-weight: 400;
+  line-height: 1.9;
+  color: rgba(238,248,245,.82);
+  margin-bottom: 1.8rem;
+}
+
+.pill-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem; }
+.pill {
+  border: 1px solid rgba(160,92,123,.4);
+  color: var(--accent);
+  font-size: .58rem;
+  font-family: var(--ms);
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .35rem .85rem;
+  transition: all .2s;
+}
+.pill:hover { background: var(--accent); color: var(--white); }
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  border-top: 1px solid var(--line);
+  padding-top: 2rem;
+  margin-top: 2rem;
+}
+.stat-num {
+  font-family: var(--bebas);
+  font-size: 2.8rem;
+  color: var(--green);
+  line-height: 1;
+}
+.stat-num span { color: var(--accent); }
+.stat-lbl {
+  font-size: .58rem;
+  color: var(--muted);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-top: .3rem;
+}
+
+/* ─── SERVICES ─── */
+.services-wrap {
+  background: var(--bg2);
+  position: relative;
+  overflow: hidden;
+}
+.services-wrap::before {
+  content: 'ПОСЛУГИ';
+  position: absolute;
+  font-family: var(--bebas);
+  font-size: 18rem;
+  color: rgba(255,255,255,.018);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line);
+  margin-top: 3rem;
+}
+.srv-card {
+  padding: 2.2rem 1.8rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+  transition: background .3s;
+}
+.srv-card:nth-child(3n) { border-right: none; }
+.srv-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s;
+}
+.srv-card:hover { background: rgba(166,244,220,.025); }
+.srv-card:hover::after { transform: scaleX(1); }
+.srv-num { font-family: var(--bebas); font-size: .95rem; color: rgba(160,92,123,.35); letter-spacing: .1em; margin-bottom: 1.2rem; }
+.srv-icon { font-size: 1.4rem; margin-bottom: .8rem; }
+.srv-name { font-family: var(--un); font-size: .85rem; font-weight: 700; color: var(--white); margin-bottom: .4rem; }
+.srv-sub { font-size: .68rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .9rem; font-family: var(--ms); }
+.srv-desc { font-family: var(--ms); font-size: .82rem; font-weight: 400; line-height: 1.75; color: rgba(238,248,245,.78); }
+
+/* ─── CASES ─── */
+.cases-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+}
+.cases-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 2px;
+}
+.case-card {
+  background: var(--bg2);
+  padding: 2.2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s;
+}
+.case-card:hover { transform: scale(1.01); z-index: 2; }
+.case-card.big { grid-row: 1 / 3; display: flex; flex-direction: column; }
+.case-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(160,92,123,.08), transparent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.case-card:hover::after { opacity: 1; }
+.case-tag { font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: .7rem; font-family: var(--ms); }
+.case-big-name { font-family: var(--bebas); font-size: 2rem; letter-spacing: .03em; margin-bottom: .9rem; line-height: 1.05; }
+.case-name { font-family: var(--un); font-size: .88rem; font-weight: 700; margin-bottom: 1.2rem; }
+.case-desc { font-size: .68rem; color: rgba(238,248,245,.6); line-height: 1.75; margin-bottom: 2rem; flex: 1; }
+.case-metrics { display: flex; flex-direction: column; gap: .9rem; }
+.case-metric-num { font-family: var(--bebas); font-size: 3.5rem; color: var(--green); line-height: 1; }
+.case-metric-lbl { font-size: .68rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-family: var(--ms); }
+.case-big-num { font-family: var(--bebas); font-size: 3rem; color: var(--green); line-height: 1; display: block; margin-top: 1.2rem; }
+.case-sm-lbl { font-size: .68rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-family: var(--ms); }
+
+/* ─── PRICING ─── */
+.pricing-wrap { background: var(--bg2); }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 3rem;
+}
+.price-card {
+  background: var(--bg);
+  padding: 2.8rem 2.2rem;
+  position: relative;
+  transition: transform .3s;
+}
+.price-card:hover { transform: translateY(-4px); }
+.price-card.hot { background: var(--accent); }
+.price-badge {
+  position: absolute;
+  top: 1.4rem; right: 1.4rem;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--green);
+  padding: .28rem .6rem;
+  font-family: var(--ms);
+}
+.price-lbl { font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: .9rem; font-family: var(--ms); }
+.price-card.hot .price-lbl { color: rgba(255,255,255,.7); }
+.price-name { font-family: var(--un); font-size: .95rem; font-weight: 900; line-height: 1.2; margin-bottom: .5rem; }
+.price-desc { font-size: .62rem; color: var(--muted); margin-bottom: 1.8rem; line-height: 1.6; }
+.price-card.hot .price-desc { color: rgba(255,255,255,.75); }
+.price-from { font-size: .58rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: .15rem; }
+.price-card.hot .price-from { color: rgba(255,255,255,.65); }
+.price-amount { font-family: var(--bebas); font-size: 3.4rem; color: var(--green); line-height: 1; margin-bottom: .4rem; }
+.price-card.hot .price-amount { color: #fff; }
+.price-period { font-size: .58rem; color: var(--muted); margin-bottom: 1.8rem; }
+.price-card.hot .price-period { color: rgba(255,255,255,.65); }
+.price-features { margin-bottom: 2.2rem; display: flex; flex-direction: column; gap: .65rem; }
+.price-features li { font-size: .66rem; line-height: 1.5; color: rgba(238,248,245,.75); padding-left: 1.1rem; position: relative; }
+.price-features li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: .62rem; }
+.price-card.hot .price-features li { color: rgba(255,255,255,.9); }
+.price-card.hot .price-features li::before { color: var(--green); }
+.price-btn {
+  display: block;
+  text-align: center;
+  padding: .85rem;
+  font-family: var(--un);
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(166,244,220,.28);
+  color: var(--green);
+  transition: all .2s;
+}
+.price-btn:hover { background: var(--green); color: var(--bg); border-color: var(--green); }
+.price-card.hot .price-btn { background: #fff; color: var(--accent); border-color: #fff; }
+.price-card.hot .price-btn:hover { background: var(--green); color: var(--bg); border-color: var(--green); }
+
+/* ─── STANDALONE ─── */
+.standalone-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line);
+  margin-top: 2.5rem;
+}
+.svc-row {
+  padding: 1.4rem 1.8rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: background .2s;
+}
+.svc-row:nth-child(2n) { border-right: none; }
+.svc-row:hover { background: rgba(160,92,123,.05); }
+.svc-name { font-family: var(--ms); font-size: .82rem; font-weight: 600; color: var(--white); }
+.svc-sub { font-family: var(--ms); font-size: .72rem; font-weight: 400; color: var(--muted); margin-top: .3rem; line-height: 1.5; }
+.svc-price { font-family: var(--bebas); font-size: 1.35rem; color: var(--green); white-space: nowrap; flex-shrink: 0; }
+
+/* ─── CTA ─── */
+.cta-section {
+  background: var(--bg2);
+  text-align: center;
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(160,92,123,.14), transparent 70%);
+  pointer-events: none;
+}
+.cta-tag { font-family: var(--ms); font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.4rem; }
+.cta-title {
+  font-family: var(--archivo);
+  font-size: clamp(3.5rem, 9vw, 9rem);
+  line-height: .92;
+  margin-bottom: 1.4rem;
+  color: var(--green);
+  position: relative;
+  display: inline-block;
+}
+.cta-title::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+  opacity: 0.5;
+  margin-top: .35em;
+  border-radius: 1px;
+}
+.cta-title .c1 { color: var(--green); display: block; }
+.cta-title .c2 { color: var(--green); display: block; }
+.cta-sub { font-family: var(--ms); font-size: .95rem; font-weight: 400; color: var(--muted); line-height: 1.85; max-width: 460px; margin: 0 auto 2.5rem; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 2.5rem 0;
+  position: relative; z-index: 1;
+}
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+.foot-links { display: flex; gap: 1.4rem; }
+.foot-links a { font-size: .58rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; transition: color .2s; }
+.foot-links a:hover { color: var(--green); }
+.foot-copy { font-size: .58rem; color: var(--muted); letter-spacing: .08em; }
+
+/* ─── REVEAL ─── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── MOBILE ─── */
+@media (max-width: 960px) {
+  nav .nav-inner { height: 64px; }
+  .nav-links { display: none; }
+  .hero { padding: 0 20px 4rem; }
+  .hero-title { font-size: clamp(3rem, 10vw, 6.5rem); }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .srv-card { border-right: none; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .case-card.big { grid-row: auto; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .standalone-grid { grid-template-columns: 1fr; }
+  .svc-row:nth-child(2n) { border-right: 1px solid var(--line); }
+  .svc-row { border-right: none; }
+  .section { padding: 65px 0; }
+  .cta-section { padding: 70px 0; }
+  footer .foot { flex-direction: column; text-align: center; }
+  .foot-links { flex-wrap: wrap; justify-content: center; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+  .hero-title { font-size: clamp(2.6rem, 9.5vw, 4.5rem); }
+  .hero-btns .btn-primary,
+  .hero-btns .btn-outline { width: 100%; justify-content: center; }
+  .cases-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .svc-row { flex-wrap: wrap; }
+  .svc-price { margin-top: .4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-inner">
+    <a href="#" class="logo"><span class="m">SHTRI</span><span class="x">X</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">Про нас</a></li>
+      <li><a href="#services">Послуги</a></li>
+      <li><a href="#cases">Кейси</a></li>
+      <li><a href="#pricing">Прайс</a></li>
+    </ul>
+    <a href="https://t.me/shtrix" class="nav-cta">Написать</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-lines">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-tag">SMM • ADS • CONTENT • DESIGN</div>
+    <h1 class="hero-title">
+      <span class="l1">DIGITAL</span>
+      <span class="l2">по красотє.</span>
+      <span class="l3">По результату.</span>
+    </h1>
+    <p class="hero-sub">
+      Маркетинг, що не просто красиво виглядає — а реально продає.<br>
+      Для брендів, які хочуть виділятись, звучати голосно та рости системно.
+    </p>
+    <div class="hero-btns">
+      <a href="https://t.me/shtrix" class="btn-primary">Написать Штріху</a>
+      <a href="#cases" class="btn-outline">Наші кейси →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">SMM <span>✦</span></span>
+    <span class="ticker-item">REELS <span>✦</span></span>
+    <span class="ticker-item">TARGET ADS <span>✦</span></span>
+    <span class="ticker-item">БРЕНДИНГ <span>✦</span></span>
+    <span class="ticker-item">КОНТЕНТ <span>✦</span></span>
+    <span class="ticker-item">СТРАТЕГІЯ <span>✦</span></span>
+    <span class="ticker-item">ДИЗАЙН <span>✦</span></span>
+    <span class="ticker-item">DIGITAL <span>✦</span></span>
+    <span class="ticker-item">SMM <span>✦</span></span>
+    <span class="ticker-item">REELS <span>✦</span></span>
+    <span class="ticker-item">TARGET ADS <span>✦</span></span>
+    <span class="ticker-item">БРЕНДИНГ <span>✦</span></span>
+    <span class="ticker-item">КОНТЕНТ <span>✦</span></span>
+    <span class="ticker-item">СТРАТЕГІЯ <span>✦</span></span>
+    <span class="ticker-item">ДИЗАЙН <span>✦</span></span>
+    <span class="ticker-item">DIGITAL <span>✦</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="section-label">Хто ми</div>
+        <h2 class="about-title">
+          Не просто агенція.<br>
+          <em>Ми двіж<br>для твого бренду.</em>
+        </h2>
+        <div class="stats-row" style="margin-top:2.5rem">
+          <div>
+            <div class="stat-num">340<span>%</span></div>
+            <div class="stat-lbl">зростання заявок</div>
+          </div>
+          <div>
+            <div class="stat-num">1M<span>+</span></div>
+            <div class="stat-lbl">охоплення</div>
+          </div>
+          <div>
+            <div class="stat-num">x2</div>
+            <div class="stat-lbl">продажів у клієнтів</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <p class="about-text">
+          Ми ShtriX — агенція, яка робе Digital по красотє. Пакуємо бізнес, качаємо соцмережі і приводимо людей, яким реально цікаво.<br><br>
+          Для брендів, що не хочуть бути як усі. Для бізнесів, які хочуть вирости швидше.
+        </p>
+        <div class="pill-row">
+          <span class="pill">⚡ Reels</span>
+          <span class="pill">📱 Instagram</span>
+          <span class="pill">🎯 Target Ads</span>
+          <span class="pill">✏️ Копірайтинг</span>
+          <span class="pill">🎨 Брендинг</span>
+          <span class="pill">📈 Стратегія</span>
+        </div>
+        <a href="https://t.me/shtrix" class="btn-outline" style="margin-top:.5rem">Поговорімо →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services-wrap" id="services">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-label">Послуги</div>
+      <h2 class="section-title">Шо ми <span>мутим</span></h2>
+    </div>
+    <div class="services-grid">
+      <div class="srv-card reveal">
+        <div class="srv-num">01</div>
+        <div class="srv-icon">📱</div>
+        <div class="srv-name">SMM Ведення</div>
+        <div class="srv-sub">Instagram / TikTok</div>
+        <div class="srv-desc">Контент-план, stories, reels, оформлення профілю та ведення соцмереж під ключ.</div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-num">02</div>
+        <div class="srv-icon">🎬</div>
+        <div class="srv-name">Reels Production</div>
+        <div class="srv-sub">Сценарій / Монтаж / Тренди</div>
+        <div class="srv-desc">Сценарій, зйомка, монтаж та відео що реально залітають.</div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-num">03</div>
+        <div class="srv-icon">🎯</div>
+        <div class="srv-name">Target Ads</div>
+        <div class="srv-sub">Meta Ads / Google Ads</div>
+        <div class="srv-desc">Реклама в Meta / Google з фокусом на заявки та продажі.</div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-num">04</div>
+        <div class="srv-icon">🎨</div>
+        <div class="srv-name">Design & Branding</div>
+        <div class="srv-sub">Айдентика / Візуал / Стиль</div>
+        <div class="srv-desc">Айдентика, візуал, стиль бренду та упаковка бізнесу.</div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-num">05</div>
+        <div class="srv-icon">📈</div>
+        <div class="srv-name">Контент стратегія</div>
+        <div class="srv-sub">Запуск / Ріст / Масштаб</div>
+        <div class="srv-desc">План росту бренду через контент і системний маркетинг.</div>
+      </div>
+      <div class="srv-card reveal">
+        <div class="srv-num">06</div>
+        <div class="srv-icon">🌐</div>
+        <div class="srv-name">Сайти</div>
+        <div class="srv-sub">Дизайн / Розробка / SEO</div>
+        <div class="srv-desc">Сучасні швидкі сайти з мобільною адаптацією та заявками.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="section" id="cases">
+  <div class="wrap">
+    <div class="cases-header reveal">
+      <div>
+        <div class="section-label">Кейси</div>
+        <h2 class="section-title">Що ми вже <span class="acc">зробили</span></h2>
+      </div>
+      <a href="https://t.me/shtrix" class="btn-outline">Дивитись всі →</a>
+    </div>
+    <div class="cases-grid reveal">
+      <div class="case-card big">
+        <div class="case-tag">Ресторан / Харчування</div>
+        <div class="case-big-name">Локальний ресторан → Міський хайп</div>
+        <div class="case-desc">Взяли заклад без присутності в соцмережах і за 3 місяці вивели на 1M+ охоплення. Reels в рекомендаціях, черга на місяць вперед.</div>
+        <div class="case-metrics">
+          <div>
+            <div class="case-metric-num">1M+</div>
+            <div class="case-metric-lbl">охоплення</div>
+          </div>
+          <div>
+            <div class="case-metric-num">+280%</div>
+            <div class="case-metric-lbl">підписників</div>
+          </div>
+          <div>
+            <div class="case-metric-num">x3</div>
+            <div class="case-metric-lbl">бронювань</div>
+          </div>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-tag">Б'юті / Салон</div>
+        <div class="case-name">Салон краси</div>
+        <span class="case-big-num">+340%</span>
+        <span class="case-sm-lbl">заявок за місяць</span>
+      </div>
+      <div class="case-card">
+        <div class="case-tag">Одяг / Fashion</div>
+        <div class="case-name">Boutique бренд</div>
+        <span class="case-big-num">x2</span>
+        <span class="case-sm-lbl">продажів онлайн</span>
+      </div>
+      <div class="case-card">
+        <div class="case-tag">Фітнес / Тренер</div>
+        <div class="case-name">Особистий тренер</div>
+        <span class="case-big-num">50K</span>
+        <span class="case-sm-lbl">підписників з нуля</span>
+      </div>
+      <div class="case-card">
+        <div class="case-tag">E-commerce / Магазин</div>
+        <div class="case-name">Інтернет-магазин</div>
+        <span class="case-big-num">+180%</span>
+        <span class="case-sm-lbl">ROAS з реклами</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing-wrap" id="pricing">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-label">Прайс</div>
+      <h2 class="section-title">Обери свій <span>рівень</span></h2>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- BASE -->
+      <div class="price-card reveal">
+        <div class="price-lbl">Для старту</div>
+        <div class="price-name">БАЗА ШТРІХ ПАКЄТ</div>
+        <div class="price-desc">Для малого бізнесу, який хоче порядок в Instagram.</div>
+        <div class="price-from">від</div>
+        <div class="price-amount">12 000</div>
+        <div class="price-period">грн / місяць</div>
+        <ul class="price-features">
+          <li>Контент-план</li>
+          <li>12 сторіс</li>
+          <li>8 постів / reels</li>
+          <li>Оформлення профілю</li>
+          <li>Базова стратегія</li>
+          <li>Супровід</li>
+        </ul>
+        <a href="https://t.me/shtrix" class="price-btn">Обрати пакет</a>
+      </div>
+
+      <!-- POPULAR -->
+      <div class="price-card hot reveal">
+        <div class="price-badge">Найпопулярніший</div>
+        <div class="price-lbl">Для росту</div>
+        <div class="price-name">ЧУТЬ ПАЛУЧШЕ ⚡</div>
+        <div class="price-desc">Для бізнесу, який хоче системний ріст.</div>
+        <div class="price-from">від</div>
+        <div class="price-amount">22 000</div>
+        <div class="price-period">грн / місяць</div>
+        <ul class="price-features">
+          <li>Контент стратегія</li>
+          <li>20 сторіс</li>
+          <li>12 reels / постів</li>
+          <li>Монтаж відео</li>
+          <li>Копірайтинг</li>
+          <li>Ведення директу</li>
+          <li>Оформлення профілю</li>
+          <li>Аналітика</li>
+        </ul>
+        <a href="https://t.me/shtrix" class="price-btn">Обрати пакет</a>
+      </div>
+
+      <!-- PRO -->
+      <div class="price-card reveal">
+        <div class="price-lbl">Для серйозних задач</div>
+        <div class="price-name">ДАВНО ЛІ ПАЛЬЦИ ВЄЄРОМ? 👑</div>
+        <div class="price-desc">Для брендів, які хочуть домінувати в ніші.</div>
+        <div class="price-from">від</div>
+        <div class="price-amount">35 000</div>
+        <div class="price-period">грн / місяць</div>
+        <ul class="price-features">
+          <li>Повне ведення соцмереж</li>
+          <li>Сильна стратегія росту</li>
+          <li>Reels під ключ</li>
+          <li>Сценарії</li>
+          <li>Прогріви та продажна система</li>
+          <li>Бренд стиль</li>
+          <li>Щотижневі созвони</li>
+          <li>Повний супровід</li>
+        </ul>
+        <a href="https://t.me/shtrix" class="price-btn">Обрати пакет</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STANDALONE -->
+<section class="section" id="standalone">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="section-label">Окремі послуги</div>
+      <h2 class="section-title">Потрібно <span class="acc">щось конкретне?</span></h2>
+    </div>
+    <div class="standalone-grid">
+      <div class="svc-row reveal">
+        <div><div class="svc-name">🎬 Reels під ключ</div><div class="svc-sub">Сценарій, монтаж, титри, обкладинка</div></div>
+        <div class="svc-price">від 1500 ₴</div>
+      </div>
+      <div class="svc-row reveal">
+        <div><div class="svc-name">📋 Контент-план на місяць</div><div class="svc-sub">Теми, ідеї, рубрики, стратегія</div></div>
+        <div class="svc-price">від 4000 ₴</div>
+      </div>
+      <div class="svc-row reveal">
+        <div><div class="svc-name">✨ Оформлення Instagram</div><div class="svc-sub">Шапка, highlights, візуал, позиціонування</div></div>
+        <div class="svc-price">від 3000 ₴</div>
+      </div>
+      <div class="svc-row reveal">
+        <div><div class="svc-name">🔍 Аудит профілю</div><div class="svc-sub">Розбір помилок, рекомендації по росту</div></div>
+        <div class="svc-price">від 2000 ₴</div>
+      </div>
+      <div class="svc-row reveal">
+        <div><div class="svc-name">✍️ Копірайтинг постів</div><div class="svc-sub">Продаючі тексти, captions для reels</div></div>
+        <div class="svc-price">від 300 ₴</div>
+      </div>
+      <div class="svc-row reveal">
+        <div><div class="svc-name">📸 Story Day Package</div><div class="svc-sub">10–15 сторіс, прогрів, продажний сценарій</div></div>
+        <div class="svc-price">від 1500 ₴</div>
+      </div>
+      <div class="svc-row reveal">
+        <div><div class="svc-name">🤖 Telegram / Instagram бот</div><div class="svc-sub">Заявки, авто-відповіді, збір лідів</div></div>
+        <div class="svc-price">від 7000 ₴</div>
+      </div>
+      <div class="svc-row reveal">
+        <div><div class="svc-name">🌐 Повноцінний сайт</div><div class="svc-sub">Сучасний дизайн, мобільна версія, SEO</div></div>
+        <div class="svc-price">від 15 000 ₴</div>
+      </div>
+      <div class="svc-row reveal">
+        <div><div class="svc-name">🔗 Linktree / Link Page</div><div class="svc-sub">Стильна сторінка з посиланнями</div></div>
+        <div class="svc-price">від 3000 ₴</div>
+      </div>
+      <div class="svc-row reveal">
+        <div><div class="svc-name">📷 Виїзна зйомка контенту</div><div class="svc-sub">Reels матеріал, фото/відео</div></div>
+        <div class="svc-price">від 3000 ₴</div>
+      </div>
+      <div class="svc-row reveal">
+        <div><div class="svc-name">🎨 Брендинг / стиль</div><div class="svc-sub">Кольори, шрифти, айдентика, бренд вайб</div></div>
+        <div class="svc-price">від 4000 ₴</div>
+      </div>
+      <div class="svc-row reveal">
+        <div><div class="svc-name">📣 Запуск реклами</div><div class="svc-sub">Налаштування, креативи, заявки + бюджет</div></div>
+        <div class="svc-price">від 5000 ₴</div>
+      </div>
+      <div class="svc-row reveal">
+        <div><div class="svc-name">💬 Консультація 1:1</div><div class="svc-sub">Персональна стратегічна сесія</div></div>
+        <div class="svc-price">3000 ₴ / год</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="wrap">
+    <h2 class="cta-title reveal">
+      <span class="c1">Готові качнути</span>
+      <span class="c2">бренд?</span>
+    </h2>
+    <p class="cta-sub reveal">Залишилось кілька місць на нові проєкти цього місяця. Напиши нам і обговоримо твою задачу.</p>
+    <div class="cta-btns reveal">
+      <a href="https://t.me/shtrix" class="btn-primary">Написать Штріху</a>
+      <a href="https://instagram.com/shtrix" class="btn-outline">Instagram →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot">
+    <div class="logo"><span class="m">SHTRI</span><span class="x">X</span></div>
+    <ul class="foot-links">
+      <li><a href="#about">Про нас</a></li>
+      <li><a href="#services">Послуги</a></li>
+      <li><a href="#cases">Кейси</a></li>
+      <li><a href="#pricing">Прайс</a></li>
+      <li><a href="https://t.me/shtrix">Telegram</a></li>
+    </ul>
+    <div class="foot-copy">© 2026 SHTRIX. Digital по красотє.</div>
+  </div>
+</footer>
+
+<script>
+  // SCROLL REVEAL
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // NAV ACTIVE LINK
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 220) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--green)' : '';
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>
